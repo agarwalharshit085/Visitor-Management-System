@@ -1,5 +1,5 @@
 package com.example.VisitorManagementSystem.dto;
-import com.example.VisitorManagementSystem.enums.visitStatus;
+import com.example.VisitorManagementSystem.enums.VisitStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -13,7 +13,7 @@ import java.util.Date;
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class VisitDto {
-    private visitStatus status;
+    private VisitStatus status;
     private Date inTime;
     private Date outTime;
     @NotNull

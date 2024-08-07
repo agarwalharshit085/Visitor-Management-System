@@ -10,6 +10,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
 
+@SuppressWarnings("ALL")
 @Entity
 @Setter
 @Getter

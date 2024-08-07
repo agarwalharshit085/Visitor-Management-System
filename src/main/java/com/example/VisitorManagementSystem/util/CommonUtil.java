@@ -8,12 +8,11 @@ import org.springframework.stereotype.Component;
 public class CommonUtil {
 
     public  Address convertAddressDTOT(AddressDto addressDto){
-        Address address = Address.builder()
+        return Address.builder()
                 .line1(addressDto.getLine1())
                 .line2(addressDto.getLine2())
                 .city(addressDto.getCity())
                 .pinCode(addressDto.getPinCode())
                 .build();
-        return address;
     }
 }

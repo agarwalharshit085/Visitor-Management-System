@@ -7,8 +7,7 @@ import com.example.VisitorManagementSystem.entity.Address;
 import com.example.VisitorManagementSystem.entity.Flat;
 import com.example.VisitorManagementSystem.entity.Visit;
 import com.example.VisitorManagementSystem.entity.Visitor;
-import com.example.VisitorManagementSystem.enums.visitStatus;
-import com.example.VisitorManagementSystem.exceptions.NotFoundException;
+import com.example.VisitorManagementSystem.enums.VisitStatus;
 import com.example.VisitorManagementSystem.repo.FlatRepo;
 import com.example.VisitorManagementSystem.repo.VisitRepo;
 import com.example.VisitorManagementSystem.repo.VisitorRepo;
@@ -19,6 +18,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
 
+
+@SuppressWarnings("ALL")
 @Service
 public class GateKeeperService {
 
@@ -72,7 +73,7 @@ public class GateKeeperService {
                 .noOfPeople(visitDto.getNoOfPeople())
                 .purpose(visitDto.getPurpose())
                 .visitor(visitor)
-                .status(visitStatus.WAITING)
+                .status(VisitStatus.WAITING)
                 .build();
         visit = visitRepo.save(visit);
         return visit.getId();
@@ -81,15 +82,9 @@ public class GateKeeperService {
     @Transactional
     public String markEntry(Long id){
         Visit visit = visitRepo.findById(id).get();
-        if(visit == null){
-
-        }
-        if(visit.getStatus().equals(visitStatus.APPROVED)){
+        if(visit.getStatus().equals(VisitStatus.APPROVED)){
             visit.setInTime(new Date());
             // visitRepo.save(visit); // without Transactional
-        }
-        else{
-
         }
         return "Done";
     }
@@ -98,12 +93,9 @@ public class GateKeeperService {
     @Transactional
     public String markExit(Long id) throws BadRequestException {
         Visit visit = visitRepo.findById(id).get();
-        if(visit == null){
-            throw new NotFoundException("Visit not Found");
-        }
-        if(visit.getStatus().equals(visitStatus.APPROVED) && visit.getInTime() != null){
+        if(visit.getStatus().equals(VisitStatus.APPROVED) && visit.getInTime() != null){
             visit.setOutTime(new Date());
-            visit.setStatus(visitStatus.COMPLETED);
+            visit.setStatus(VisitStatus.COMPLETED);
         }
         else{
             throw new BadRequestException("Invalid State Transition");
