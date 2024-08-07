@@ -3,8 +3,8 @@ This project is a comprehensive Visitor Management System developed using Java, 
 
 ## Features
 - Admin Panel: Manage users, view visitor logs, and generate reports.
-- GateKeeper Panel: Register visitor entries and exits, view visitor history.
-- Resident Panel: Pre-approve visitors, view personal visitor logs.
+- GateKeeper Panel: Register visitor entries and exits, view visitor history, Uploads visitors image.
+- Resident Panel: Pre-approve visitors, view personal visitor logs, Fetches Pending visitors in page formate.
 
 ## Technologies Used
 - Backend: Java, Spring Boot
